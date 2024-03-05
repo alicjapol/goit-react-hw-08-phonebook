@@ -9,7 +9,6 @@ const initialState = {
   error: null,
 };
 
-// Common handler for pending states
 const handlePending = state => {
   state.loading = true;
 };
