@@ -27,8 +27,8 @@
   .signUpForm button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #ffc4f7;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -36,5 +36,6 @@
   
   .signUpForm button:hover {
     background-color: #ff1389;
+    color: white;
   }
   
