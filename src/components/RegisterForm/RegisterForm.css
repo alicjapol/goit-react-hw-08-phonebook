@@ -21,7 +21,7 @@
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-sizing: border-box; /* Makes sure padding does not affect the total width */
+    box-sizing: border-box; 
   }
   
   .signUpForm button {
