@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { fetchContacts } from '../redux/operations';
 import Navigation from './Navigation/Navigation';
 import LoginForm from './LoginForm/LoginForm';
-import { RegisterForm } from './RegisterForm/RegisterForm';
+import RegisterForm from './RegisterForm/RegisterForm';
 import Home from './Home/Home';
 import Contacts from './Contacts';
 import ProtectedRoute from './ProtectedRoute';
@@ -23,25 +23,21 @@ export const App = () => {
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
-         
-          <Route
-            path="login"
-            element={
-              <PrivateRoute Component={<LoginForm />} redirectTo="/contacts" />
-            }
-          />
-           <Route
-            path="register"
-            element={
-              <PrivateRoute Component={<RegisterForm />} redirectTo="/contacts" />
-            }
-          />
-          <Route
-            path="contacts"
-            element={
-              <ProtectedRoute Component={<Contacts />} redirectTo="/login" />
-            }
-          />
+          <Route path="/login" element={
+            <PrivateRoute redirectTo="/contacts">
+              <LoginForm />
+            </PrivateRoute>
+          } />
+          <Route path="/register" element={
+            <PrivateRoute redirectTo="/contacts">
+              <RegisterForm />
+            </PrivateRoute>
+          } />
+          <Route path="/contacts" element={
+            <ProtectedRoute redirectTo="/login">
+              <Contacts />
+            </ProtectedRoute>
+          } />
         </Routes>
       </BrowserRouter>
     </div>
