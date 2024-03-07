@@ -1,15 +1,14 @@
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
 import { useDispatch } from 'react-redux';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import { fetchContacts } from '../redux/operations';
-import SignUpForm from './RegisterForm/RegisterForm';
 import Navigation from './Navigation/Navigation';
-import  LoginForm from './LoginForm/LoginForm'
+import LoginForm from './LoginForm/LoginForm';
 import { RegisterForm } from './RegisterForm/RegisterForm';
+import Home from './Home/Home';
+import Contacts from './Contacts';
+import ProtectedRoute from './ProtectedRoute';
+import PrivateRoute from './PrivateRoute';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -20,21 +19,31 @@ export const App = () => {
 
   return (
     <div>
-<BrowserRouter>
-<Navigation></Navigation>
-<Routes>
-        {/* <Route path="/" element={<ContactForm />} /> */}
-        <Route path="/register" element={<RegisterForm />} />
-        <Route path="/login" element={<LoginForm />} />
-        {/* <Route path="*" element={<NotFound />} /> */}
-      </Routes>
-      <h1 className="title">Phonebook</h1>
-      <ContactForm />
-      <Filter />
-      <ContactList />
+      <BrowserRouter>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Home />} />
+         
+          <Route
+            path="login"
+            element={
+              <PrivateRoute Component={<LoginForm />} redirectTo="/contacts" />
+            }
+          />
+           <Route
+            path="register"
+            element={
+              <PrivateRoute Component={<RegisterForm />} redirectTo="/contacts" />
+            }
+          />
+          <Route
+            path="contacts"
+            element={
+              <ProtectedRoute Component={<Contacts />} redirectTo="/login" />
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </div>
   );
 };
-
-export default App;
