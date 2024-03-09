@@ -4,7 +4,7 @@ import './Navigation.css';
 import useAuth from '../../hooks/useAuth';
 
 export default function Navigation() {
-  const { isLoggedIn, user } = useAuth();
+  const { isLoggedIn } = useAuth();
   return (
     <div className="navContainer">
       <NavLink

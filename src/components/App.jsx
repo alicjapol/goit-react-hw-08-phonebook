@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
-import { fetchContacts } from '../redux/operations';
 import Navigation from './Navigation/Navigation';
 import LoginForm from './LoginForm/LoginForm';
 import RegisterForm from './RegisterForm/RegisterForm';
