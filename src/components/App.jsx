@@ -9,13 +9,20 @@ import Home from './Home/Home';
 import Contacts from './Contacts';
 import ProtectedRoute from './ProtectedRoute';
 import PrivateRoute from './PrivateRoute';
+import { refreshUser } from '../redux/auth/operations';
+import useAuth from 'hooks/useAuth';
 
 export const App = () => {
   const dispatch = useDispatch();
-
+  const { isRefreshing } = useAuth();
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    dispatch(refreshUser());
+    console.log(dispatch);
+  }, []); 
+
+  if (isRefreshing) {
+    return <p>loading...</p>;
+  }
 
   return (
     <div>
@@ -23,21 +30,30 @@ export const App = () => {
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={
-            <PrivateRoute redirectTo="/contacts">
-              <LoginForm />
-            </PrivateRoute>
-          } />
-          <Route path="/register" element={
-            <PrivateRoute redirectTo="/contacts">
-              <RegisterForm />
-            </PrivateRoute>
-          } />
-          <Route path="/contacts" element={
-            <ProtectedRoute redirectTo="/login">
-              <Contacts />
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/login"
+            element={
+              <PrivateRoute redirectTo="/contacts">
+                <LoginForm />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <PrivateRoute redirectTo="/contacts">
+                <RegisterForm />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <ProtectedRoute redirectTo="/login">
+                <Contacts />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
