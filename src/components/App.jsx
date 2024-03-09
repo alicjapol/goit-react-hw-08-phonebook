@@ -16,7 +16,8 @@ export const App = () => {
   const { isRefreshing } = useAuth();
   useEffect(() => {
     dispatch(refreshUser());
-  }, [dispatch]); 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (isRefreshing) {
     return <p>loading...</p>;
