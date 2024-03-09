@@ -10,12 +10,14 @@ import ProtectedRoute from './ProtectedRoute';
 import PrivateRoute from './PrivateRoute';
 import { refreshUser } from '../redux/auth/operations';
 import useAuth from 'hooks/useAuth';
+import { fetchContacts } from '../redux/operations';
 
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
   useEffect(() => {
     dispatch(refreshUser());
+    dispatch(fetchContacts());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

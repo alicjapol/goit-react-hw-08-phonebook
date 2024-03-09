@@ -1,44 +1,31 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/auth/operations';
 
 function LoginForm() {
-  const [credentials, setCredentials] = useState({
-    username: '',
-    password: '',
-  });
+  const dispatch = useDispatch();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials({
-      ...credentials,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    // Tutaj umieść logikę do logowania użytkownika (np. wysyłanie danych do API)
-    console.log(credentials);
+    const form = e.currentTarget;
+    dispatch(
+      login({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    form.reset();
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Username:</label>
-        <input
-          type="text"
-          name="username"
-          value={credentials.username}
-          onChange={handleChange}
-        />
+        <label>Email:</label>
+        <input type="text" name="email" />
       </div>
       <div>
         <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={credentials.password}
-          onChange={handleChange}
-        />
+        <input type="password" name="password" />
       </div>
       <div>
         <button type="submit">Login</button>
