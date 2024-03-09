@@ -16,8 +16,7 @@ export const App = () => {
   const { isRefreshing } = useAuth();
   useEffect(() => {
     dispatch(refreshUser());
-    console.log(dispatch);
-  }, []); 
+  }, [dispatch]); 
 
   if (isRefreshing) {
     return <p>loading...</p>;
