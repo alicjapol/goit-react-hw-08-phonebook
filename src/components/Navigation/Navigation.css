@@ -1,20 +1,25 @@
 .navLink {
-    text-decoration: none;
-    font-size: 18px;
-    color: #000;
-    margin-right: 10px;
-    font-weight: 700;
-    padding: 25px;
-  }
-  
-  .navLinkActive {
-    color: #ff00bb;
-    font-weight: bold;
-  }
-  .navContainer {
-    display: flex;
-    justify-content: center;
-  background-color: #f4d3f0; 
-  padding: 20px 0; 
-  }
+  text-decoration: none;
+  font-size: 18px;
+  color: #000;
+  margin-right: 10px;
+  font-weight: 700;
+  padding: 25px;
+}
 
+.navLinkActive {
+  color: #ff00bb;
+  font-weight: bold;
+}
+.navContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #f4d3f0;
+  padding: 20px 0;
+}
+
+.themeToggle svg {
+  color: #ff00bb;
+}

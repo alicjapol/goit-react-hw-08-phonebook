@@ -1,9 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 import useAuth from '../../hooks/useAuth';
+import { useColorMode, Button } from '@chakra-ui/react';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 export default function Navigation() {
   const { isLoggedIn } = useAuth();
+  const { colorMode, toggleColorMode } = useColorMode(); 
 
   return (
     <div className="navContainer">
@@ -29,6 +32,9 @@ export default function Navigation() {
           </NavLink>
         </>
       )}
+       <Button onClick={toggleColorMode} className="themeToggle">
+        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+      </Button>
     </div>
   );
 }

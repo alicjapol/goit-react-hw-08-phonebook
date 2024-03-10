@@ -9,8 +9,14 @@ export default function UserMenu() {
 
   return (
     <div className="userMenuContainer">
-      <p className="userEmail">Email: {user?.email}</p> 
-      <LogoutButton />
+    <div className="thumb-lg member-thumb mx-auto">
+      <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="profile-image" className='avatar' />
     </div>
+    <p className="userEmail">Email: {user?.email}</p>
+    <LogoutButton />
+  </div>
   );
 };
+
+
+

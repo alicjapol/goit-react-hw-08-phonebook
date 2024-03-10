@@ -15,14 +15,15 @@
   
   .contactList button {
     cursor: pointer;
-    background-color: #dc3545;
+    background-color: #000000;
     color: white;
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
   }
   .contactList button:hover {
-    background-color: #920312;
+    background-color: #ffffff;
+    color: black;
 
 
   }
