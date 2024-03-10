@@ -1,6 +1,6 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
 import Navigation from './Navigation/Navigation';
 import LoginForm from './LoginForm/LoginForm';
 import RegisterForm from './RegisterForm/RegisterForm';
@@ -10,19 +10,17 @@ import ProtectedRoute from './ProtectedRoute';
 import PrivateRoute from './PrivateRoute';
 import { refreshUser } from '../redux/auth/operations';
 import useAuth from 'hooks/useAuth';
-import { fetchContacts } from '../redux/operations';
 
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
+
   useEffect(() => {
     dispatch(refreshUser());
-    dispatch(fetchContacts());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   if (isRefreshing) {
-    return <p>loading...</p>;
+    return <p>Loading...</p>;
   }
 
   return (

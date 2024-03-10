@@ -1,10 +1,14 @@
 
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/operations';
-
+import {fetchContacts} from '../../redux/operations'
 function LoginForm() {
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    dispatch(fetchContacts());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
