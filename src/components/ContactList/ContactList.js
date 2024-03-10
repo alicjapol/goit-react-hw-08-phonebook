@@ -1,12 +1,16 @@
+import React, { useEffect } from 'react'; // Poprawione importowanie useEffect
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/operations';
+import { deleteContact, fetchContacts } from '../../redux/operations';
 import './ContactList.css';
-import PropTypes from 'prop-types';
 import { selectFilteredContacts } from '../../redux/selectors';
 
 function ContactList() {
   const contacts = useSelector(selectFilteredContacts);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <ul className="contactList">
@@ -21,7 +25,5 @@ function ContactList() {
     </ul>
   );
 }
-
-
 
 export default ContactList;
