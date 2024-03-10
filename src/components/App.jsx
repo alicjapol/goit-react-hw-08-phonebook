@@ -10,6 +10,8 @@ import ProtectedRoute from './ProtectedRoute';
 import PrivateRoute from './PrivateRoute';
 import { refreshUser } from '../redux/auth/operations';
 import useAuth from 'hooks/useAuth';
+import { ChakraProvider } from '@chakra-ui/react';
+import UserMenu from './UserMenu/UserMenu';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -24,37 +26,47 @@ export const App = () => {
   }
 
   return (
-    <div>
-      <BrowserRouter>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/login"
-            element={
-              <PrivateRoute redirectTo="/contacts">
-                <LoginForm />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <PrivateRoute redirectTo="/contacts">
-                <RegisterForm />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/contacts"
-            element={
-              <ProtectedRoute redirectTo="/login">
-                <Contacts />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <ChakraProvider>
+      <div>
+        <BrowserRouter>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/login"
+              element={
+                <PrivateRoute redirectTo="/contacts">
+                  <LoginForm />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PrivateRoute redirectTo="/contacts">
+                  <RegisterForm />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <ProtectedRoute redirectTo="/login">
+                  <Contacts />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute redirectTo="/login">
+                  <UserMenu />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </ChakraProvider>
   );
 };
