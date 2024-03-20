@@ -20,6 +20,7 @@ function ContactList() {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    width: '600px'
   };
 
   const buttonStyles = {
