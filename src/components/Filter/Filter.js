@@ -1,30 +1,34 @@
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { setFilter } from '../../redux/contactsSlice';
-import './Filter.css';
-import PropTypes from 'prop-types';
+import { Input, FormControl, FormLabel } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
 import { selectFilter } from '../../redux/selectors';
 
 function Filter() {
   const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
+  const handleChange = e => {
+    dispatch(setFilter(e.target.value));
+  };
+
   return (
-    <div className="filter">
-      <label>
-        Filter
-        <input
-          type="text"
-          value={filter}
-          onChange={e => dispatch(setFilter(e.target.value))}
-        />
-      </label>
-    </div>
+    <FormControl className="filter" padding="10px">
+      <FormLabel margin="0 0 10px">Filter</FormLabel>
+      <Input
+        type="text"
+        value={filter}
+        onChange={handleChange}
+        placeholder="Enter filter text..."
+        width="200px"
+        padding="10px"
+        marginLeft="10px"
+        borderRadius="5px"
+        border="1px solid #ccc"
+      />
+    </FormControl>
   );
 }
-
-Filter.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-};
 
 export default Filter;

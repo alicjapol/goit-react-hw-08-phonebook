@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'; // Poprawione importowanie useEffect
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact, fetchContacts } from '../../redux/operations';
-import './ContactList.css';
+import { Text, Button, UnorderedList, ListItem } from '@chakra-ui/react';
 import { selectFilteredContacts } from '../../redux/selectors';
 
 function ContactList() {
@@ -12,17 +12,37 @@ function ContactList() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  const listItemStyles = {
+    margin: '10px 0',
+    padding: '10px',
+    border: '1px solid #ccc',
+    borderRadius: '5px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  };
+
+  const buttonStyles = {
+    cursor: 'pointer',
+    bg: '#000000',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    padding: '5px 10px',
+    _hover: { bg: '#ffffff', color: 'black' },
+  };
+
   return (
-    <ul className="contactList">
+    <UnorderedList listStyleType="none" padding="0">
       {contacts.map(contact => (
-        <li key={contact.id}>
-          {contact.name}: {contact.number}
-          <button onClick={() => dispatch(deleteContact(contact.id))}>
+        <ListItem key={contact.id} {...listItemStyles}>
+          <Text>{contact.name}: {contact.number}</Text>
+          <Button onClick={() => dispatch(deleteContact(contact.id))} {...buttonStyles}>
             Delete
-          </button>
-        </li>
+          </Button>
+        </ListItem>
       ))}
-    </ul>
+    </UnorderedList>
   );
 }
 

@@ -10,8 +10,18 @@ import ProtectedRoute from './ProtectedRoute';
 import PrivateRoute from './PrivateRoute';
 import { refreshUser } from '../redux/auth/operations';
 import useAuth from 'hooks/useAuth';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import UserMenu from './UserMenu/UserMenu';
+
+const customTheme = extendTheme({
+  colors: {
+    brand: {
+      900: "#1a365d",
+      800: "#153e75",
+      700: "#2a69ac",
+    },
+  },
+});
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -26,9 +36,11 @@ export const App = () => {
   }
 
   return (
-    <ChakraProvider>
-      <div>
-        <BrowserRouter>
+    <BrowserRouter>
+
+
+  <ChakraProvider theme={customTheme}>
+   
           <Navigation />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -65,8 +77,9 @@ export const App = () => {
               }
             />
           </Routes>
+          </ChakraProvider>
+
         </BrowserRouter>
-      </div>
-    </ChakraProvider>
+  
   );
 };
